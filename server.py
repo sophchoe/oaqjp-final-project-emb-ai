@@ -10,11 +10,11 @@ from EmotionDetection.emotion_detection import emotion_detector
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
-def emotion_detect():
+def emotion_detector():
     """This code receives the text from the HTML interface and runs emotion detectioin over it"""
     text_to_analyze = request.args.get('textToAnalyze')
     result = emotion_detector(text_to_analyze)
-    if result is None:
+    if result['dominant_emotion'] is None:
         return "Invalid input! Try again."
     res1 = f"For the given statement, the system response is {result}."
     res2 = f"The dominant emotion is \033[1m{result['dominant_emotion']}\033[0m."
